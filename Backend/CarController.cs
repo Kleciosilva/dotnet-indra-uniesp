@@ -4,15 +4,15 @@ using System.Text;
 
 namespace Backend
 {
-    class CarController : IAutomobile
+    public class CarController : IAutomobile
     {
-        public CarController(string name, string model, string factoryYear, string color, string type)
+        public CarController(string name, string model, string factoryYear, string color)
         {
             this.Name = name;
             this.Model= model;
             this.FactoryYear = factoryYear;
             this.Color = color;
-            this.Type = type;
+            this.Type = "Car";
         }
 
         public string Name { get; set; }
