@@ -6,10 +6,15 @@ namespace Backend.Service
 {
     public class CarService
     {
+        private CarRepository repository;
 
-        public CarController Test()
+        public CarService()
         {
-            return new CarController("Fusca", "1990", "1999", "Azul");
+            repository = new CarRepository();
+        }
+        public IEnumerable<CarModel> List()
+        {
+            return repository.List();
         }
     }
 }

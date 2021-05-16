@@ -1,8 +1,30 @@
-﻿@model Backend.CarController
+﻿@model IEnumerable<Backend.CarModel>
 
 @{
     ViewData["Title"] = "Veículo";
 }
 
-<div>Helloooo</div>
-<div>@Model.Name</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Modelo</th>
+            <th scope="col">Fabricação</th>
+            <th scope="col">Cor</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var car in Model)
+        {
+            <tr>
+                <td>@car.Name</td>
+                <td>@car.Model</td>
+                <td>@car.FactoryYear</td>
+                <td>@car.Color</td>
+                <td><a class="btn btn-dark">Editar</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

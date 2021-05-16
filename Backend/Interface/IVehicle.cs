@@ -2,7 +2,7 @@
 
 namespace Backend
 {
-    public interface IAutomobile
+    public interface IVehicle
     {
         public string Name { get; set; }
 

@@ -8,4 +8,14 @@
     <None Include="D:\www\html\cursos\dotnet_uinesp_indra\ProjetoDeCurso\Frontend\.gitignore" Link=".gitignore" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\EntityFramework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
