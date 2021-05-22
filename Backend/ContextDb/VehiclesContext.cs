@@ -7,6 +7,8 @@ namespace Backend
     {
         public DbSet<CarModel> Cars { get; set; }
 
+        public DbSet<MotoModel> Motos { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

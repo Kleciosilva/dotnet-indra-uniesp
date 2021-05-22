@@ -3,22 +3,19 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
-using Microsoft.EntityFrameworkCore;
-using System.Data;
 
 namespace Backend
 {
-    public class CarModel : IVehicle
+    public class MotoModel : IVehicle
     {
-        public CarModel(string name, string model, string factoryYear, string color)
+        public MotoModel(string name, string model, string factoryYear, string color)
         {
             this.Name = name;
-            this.Model= model;
+            this.Model = model;
             this.FactoryYear = factoryYear;
             this.Color = color;
-            this.Type = "Car";
+            this.Type = "Moto";
         }
-
 
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
@@ -31,12 +28,13 @@ namespace Backend
         public string Color { get; set; }
         public string Type { get; set; }
         public string Country { get; set; }
-        
-        public string Honk() => "PiBiii";
+
+        public string Honk() => "Piii";
 
         public string Honk(string honk)
         {
             return honk;
         }
+
     }
 }

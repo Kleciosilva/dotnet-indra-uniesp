@@ -1,0 +1,50 @@
+﻿@model List<Backend.CarModel>
+
+@{
+    ViewData["Title"] = "Busca de carros";
+}
+
+
+<form>
+    <div class="input-group mb-3">
+        <input type="text" name="inputSearch" id="inputSearch" class="form-control">
+        <div class="input-group-append">
+            <select class="form-select">
+                <option value="1" selected>Fabricante</option>
+            </select>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Modelo</th>
+            <th scope="col">Fabricação</th>
+            <th scope="col">Cor</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null || Model.Count > 0)
+         {
+            @foreach (var car in Model)
+            {
+                <tr>
+                    <td>@car.Id</td>
+                    <td>@car.Name</td>
+                    <td>@car.Model</td>
+                    <td>@car.FactoryYear</td>
+                    <td>@car.Color</td>
+                    <td>
+                        <a class="btn btn-dark text-white" asp-area="" asp-controller="Car" asp-action="Edit" asp-route-id="@car.Id">Editar</a>
+                        <button class="btn btn-dark text-white" onclick="openModalDelete('@car.Id')">Apagar</button>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

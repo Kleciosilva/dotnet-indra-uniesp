@@ -12,17 +12,21 @@ namespace Backend.Controller
         public CarController(string name, string model, string factoryYear, string color)
         {
             this.car = new CarModel(name, model, factoryYear, color);
-            this.car.Type = "Car";
             
-            Console.WriteLine("00---------------------> Controller - Constructor");
-
             this.repository = new CarRepository();
         }
 
         public void Save()
         {
-            Console.WriteLine("00---------------------> Controller - Save");
             this.repository.Create(this.car);
+        }
+
+        public void Update(string id)
+        {
+            Guid CarId = Guid.Parse(id);
+            this.car.Id = CarId;
+
+            this.repository.Update(this.car);
         }
     }
 }

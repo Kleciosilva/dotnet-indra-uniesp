@@ -4,10 +4,30 @@
     ViewData["Title"] = "Veículo";
 }
 
+<div class="modal fade" id="modalDelete" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Deseja excluir este registro?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>O registro será excluído definitivamente!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button onclick="deleteItem()" type="button" class="btn btn-primary">Excluir</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <table class="table table-hover">
     <thead>
         <tr>
+            <th scope="col">#</th>
             <th scope="col">Nome</th>
             <th scope="col">Modelo</th>
             <th scope="col">Fabricação</th>
@@ -19,12 +39,36 @@
         @foreach (var car in Model)
         {
             <tr>
+                <td>@car.Id</td>
                 <td>@car.Name</td>
                 <td>@car.Model</td>
                 <td>@car.FactoryYear</td>
                 <td>@car.Color</td>
-                <td><a class="btn btn-dark">Editar</a></td>
+                <td>
+                    <a class="btn btn-dark text-white" asp-area="" asp-controller="Car" asp-action="Edit" asp-route-id="@car.Id">Editar</a>
+                    <button class="btn btn-dark text-white" onclick="openModalDelete('@car.Id')">Apagar</button>
+                </td>
             </tr>
         }
     </tbody>
 </table>
+
+<script>
+    var idDelete = null;
+
+    function openModalDelete(id) {
+        console.log(id);
+        idDelete = id;
+        $('#modalDelete').modal('show');
+    }
+
+    function deleteItem() {
+        if (idDelete) {
+            document.location = '/Car/Delete/' + idDelete;
+        }
+    }
+
+    function clearIdDelete() {
+        idDelete = null;
+    }
+</script>

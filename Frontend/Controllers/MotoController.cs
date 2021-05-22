@@ -1,32 +1,31 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Backend.Service;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Backend.Service;
-using Backend.Controller;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Frontend.Controllers
 {
-    public class CarController : Controller
+    public class MotoController : Controller
     {
-        private CarService service;
+        private MotoService service;
 
-        public CarController()
+        public MotoController()
         {
-            this.service = new CarService();
+            this.service = new MotoService();
         }
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult ListCar()
+        public IActionResult Listmoto()
         {
-            var cars = this.service.List();
-            return View("ListCar", cars);
+            var motos = this.service.List();
+            return View("Listmoto", motos);
         }
 
         public ActionResult New()
@@ -39,16 +38,16 @@ namespace Frontend.Controllers
         {
             try
             {
-                var car = new Backend.Controller.CarController(
-                    collection["Name"], 
-                    collection["Model"], 
-                    collection["FactoryYear"], 
+                var moto = new Backend.Controller.MotoController(
+                    collection["Name"],
+                    collection["Model"],
+                    collection["FactoryYear"],
                     collection["Color"]
                     );
 
-                car.Save();
+                moto.Save();
 
-                return RedirectToAction(nameof(ListCar));
+                return RedirectToAction(nameof(Listmoto));
             }
             catch
             {
@@ -58,9 +57,9 @@ namespace Frontend.Controllers
 
         public ActionResult Edit(Guid id)
         {
-            var car = this.service.GetById(id);
+            var moto = this.service.GetById(id);
 
-            return View("Edit", car);
+            return View("Edit", moto);
         }
 
         [HttpPost]
@@ -68,16 +67,16 @@ namespace Frontend.Controllers
         {
             try
             {
-                var car = new Backend.Controller.CarController(
+                var moto = new Backend.Controller.MotoController(
                     collection["Name"],
                     collection["Model"],
                     collection["FactoryYear"],
                     collection["Color"]
                     );
 
-                car.Update(collection["Id"]);
+                moto.Update(collection["Id"]);
 
-                return RedirectToAction(nameof(ListCar));
+                return RedirectToAction(nameof(Listmoto));
             }
             catch
             {
@@ -88,7 +87,7 @@ namespace Frontend.Controllers
         public ActionResult Delete(Guid id)
         {
             service.Delete(id);
-            return RedirectToAction(nameof(ListCar));
+            return RedirectToAction(nameof(Listmoto));
         }
 
         public ActionResult Search(IFormCollection collection)
@@ -109,7 +108,7 @@ namespace Frontend.Controllers
             {
                 //GetByManufacturer
 
-                //ViewBag.Cars = 
+                //ViewBag.motos = 
                 this.service.GetByManufacturer(collection["inputSearch"]);
 
                 return View("Search");
